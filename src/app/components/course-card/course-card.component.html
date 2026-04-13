@@ -1,0 +1,31 @@
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-lg shadow-primary/5 flex flex-col transition-all hover:-translate-y-2 h-full">
+  <div class="h-48 relative">
+    <img 
+      class="w-full h-full object-cover" 
+      [src]="course.imageUrl" 
+      [alt]="course.title"
+      referrerpolicy="no-referrer"
+    />
+    <div *ngIf="course.badge" class="absolute top-4 left-4 px-3 py-1 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold rounded-lg uppercase">
+      {{ course.badge }}
+    </div>
+  </div>
+  <div class="p-8 flex-grow flex flex-col">
+    <h4 class="text-2xl font-bold text-primary mb-3">{{ course.title }}</h4>
+    <p class="text-sm text-on-surface-variant mb-6 flex-grow">{{ course.description }}</p>
+    <div class="flex items-center gap-6 mb-8 text-xs text-on-surface-variant font-medium">
+      <span class="flex items-center gap-2">
+        <lucide-icon [img]="CalendarIcon" class="w-4 h-4 text-secondary"></lucide-icon> {{ course.duration }}
+      </span>
+      <span class="flex items-center gap-2">
+        <lucide-icon [img]="BarChartIcon" class="w-4 h-4 text-secondary"></lucide-icon> {{ course.level }}
+      </span>
+    </div>
+    <button 
+      (click)="enroll.emit(course)"
+      class="w-full bg-primary-container text-on-primary py-4 rounded-xl font-bold text-sm hover:bg-primary transition-colors active:scale-95"
+    >
+      Enroll Today
+    </button>
+  </div>
+</div>

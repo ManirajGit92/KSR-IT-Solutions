@@ -1,0 +1,28 @@
+<section id="courses" class="py-24 px-6 bg-surface-container-low">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16 text-center">
+      <h2 class="text-4xl font-bold text-primary mb-4">Featured Programs</h2>
+      <div class="w-16 h-1 bg-secondary mx-auto rounded-full"></div>
+    </div>
+
+    <div *ngIf="loading" class="flex justify-center py-20">
+      <div class="w-12 h-12 border-4 border-secondary border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <div *ngIf="!loading && courses.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div *ngFor="let course of courses">
+        <app-course-card [course]="course" (enroll)="handleEnroll($event)"></app-course-card>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && courses.length === 0" class="text-center py-20 bg-surface-container-lowest rounded-3xl border border-dashed border-outline-variant">
+      <p class="text-on-surface-variant mb-6">No courses available yet.</p>
+      
+      <ng-container *ngIf="firebaseService.user$ | async as user">
+        <button *ngIf="user.email === 'manirajmca.ac@gmail.com'" (click)="seedData()" class="bg-secondary text-on-secondary px-6 py-2 rounded-lg font-bold">
+          Seed Initial Courses
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</section>

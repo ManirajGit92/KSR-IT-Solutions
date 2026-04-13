@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "Course": {
+      "title": "Course",
+      "description": "A training program offered by KSR IT Solutions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "duration": { "type": "string" },
+        "level": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced"] },
+        "imageUrl": { "type": "string", "format": "uri" },
+        "badge": { "type": "string" }
+      },
+      "required": ["title", "description", "duration", "level"]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "description": "A record of a student enrolling in a course.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "courseId": { "type": "string" },
+        "courseTitle": { "type": "string" },
+        "enrolledAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "active", "completed"] }
+      },
+      "required": ["userId", "courseId", "enrolledAt"]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "A contact form submission from a potential student.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "message": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message", "submittedAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A student or administrator profile.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "role": { "type": "string", "enum": ["student", "admin"] }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/courses/{courseId}": {
+      "schema": "Course",
+      "description": "Collection of available courses."
+    },
+    "/enrollments/{enrollmentId}": {
+      "schema": "Enrollment",
+      "description": "User course enrollments."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Contact form submissions."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile data."
+    }
+  }
+}

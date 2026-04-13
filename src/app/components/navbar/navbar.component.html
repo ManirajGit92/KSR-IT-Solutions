@@ -1,0 +1,48 @@
+<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <button (click)="toggleMenu()" class="md:hidden">
+        <lucide-icon *ngIf="isOpen" [img]="XIcon" class="w-6 h-6 text-primary"></lucide-icon>
+        <lucide-icon *ngIf="!isOpen" [img]="MenuIcon" class="w-6 h-6 text-primary"></lucide-icon>
+      </button>
+      <span class="text-xl font-black tracking-tighter text-primary">KSR IT Solutions</span>
+    </div>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#courses" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Courses</a>
+      <a href="#about" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+      <a href="#contact" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Contact</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <ng-container *ngIf="firebaseService.user$ | async as user; else loginTpl">
+        <div class="flex items-center gap-3">
+          <img [src]="user.photoURL || ''" [alt]="user.displayName || ''" class="w-8 h-8 rounded-full border border-outline-variant" />
+          <button (click)="firebaseService.logout()" class="text-sm font-bold text-primary hover:text-secondary transition-colors flex items-center gap-1">
+            <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon>
+            <span class="hidden sm:inline">Logout</span>
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #loginTpl>
+        <button 
+          (click)="firebaseService.signInWithGoogle()"
+          class="bg-primary-container text-on-primary px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-all active:scale-95"
+        >
+          Enroll Now
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Mobile Menu using CSS transition instead of framer-motion -->
+  <div class="md:hidden bg-surface-container border-b border-outline-variant/10 overflow-hidden transition-all duration-300"
+       [class.max-h-0]="!isOpen" [class.opacity-0]="!isOpen"
+       [class.max-h-48]="isOpen" [class.opacity-100]="isOpen">
+    <div class="px-6 py-4 flex flex-col gap-4">
+      <a href="#courses" (click)="isOpen = false" class="text-lg font-medium text-primary">Courses</a>
+      <a href="#about" (click)="isOpen = false" class="text-lg font-medium text-primary">About Us</a>
+      <a href="#contact" (click)="isOpen = false" class="text-lg font-medium text-primary">Contact</a>
+    </div>
+  </div>
+</nav>

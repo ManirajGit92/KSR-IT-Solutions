@@ -1,0 +1,79 @@
+<section id="contact" class="py-24 px-6 bg-surface">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <div>
+      <h2 class="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+      <p class="text-lg text-on-surface-variant mb-12">Have questions? We're here to help you navigate your career path.</p>
+      
+      <div class="space-y-8">
+        <div class="flex items-center gap-6">
+          <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary">
+            <lucide-icon [img]="PhoneIcon" class="w-6 h-6"></lucide-icon>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Call Us</div>
+            <div class="text-lg font-bold text-primary">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary">
+            <lucide-icon [img]="MailIcon" class="w-6 h-6"></lucide-icon>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Email Us</div>
+            <div class="text-lg font-bold text-primary">admissions&#64;ksrit.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-surface-container-low p-8 md:p-10 rounded-3xl border border-outline-variant/10">
+      <form (ngSubmit)="handleSubmit()" class="space-y-6">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Your Name</label>
+          <input 
+            required
+            name="name"
+            [(ngModel)]="formData.name"
+            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
+            placeholder="John Doe" 
+            type="text" 
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Email Address</label>
+          <input 
+            required
+            name="email"
+            [(ngModel)]="formData.email"
+            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
+            placeholder="john@example.com" 
+            type="email" 
+          />
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Message</label>
+          <textarea 
+            required
+            name="message"
+            [(ngModel)]="formData.message"
+            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
+            placeholder="How can we help you?" 
+            rows="4"
+          ></textarea>
+        </div>
+        <button 
+          [disabled]="status === 'loading'"
+          class="w-full py-5 rounded-xl font-bold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+          [ngClass]="status === 'success' ? 'bg-green-600 text-white' : 'bg-secondary text-on-secondary shadow-secondary/20'"
+        >
+          <ng-container *ngIf="status === 'loading'">Sending...</ng-container>
+          <ng-container *ngIf="status === 'success'"><lucide-icon [img]="CheckIcon" class="w-5 h-5"></lucide-icon> Sent Successfully</ng-container>
+          <ng-container *ngIf="status !== 'loading' && status !== 'success'">Send Message</ng-container>
+        </button>
+        <p *ngIf="status === 'error'" class="text-red-500 text-xs flex items-center gap-1 mt-2">
+          <lucide-icon [img]="AlertIcon" class="w-4 h-4"></lucide-icon> Something went wrong. Please try again.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
