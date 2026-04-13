@@ -1,0 +1,48 @@
+<div class="flex h-screen bg-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container transition-colors duration-300">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-surface-container-low border-r border-outline-variant/20 flex flex-col h-full">
+    <div class="p-6">
+      <a routerLink="/" class="text-xl font-black tracking-tighter text-primary">KSR Admin</a>
+    </div>
+    
+    <nav class="flex-grow flex flex-col gap-2 px-4 mt-6">
+      <a routerLink="/admin" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="LayoutDashboardIcon" class="w-4 h-4"></lucide-icon> Dashboard
+      </a>
+      <a routerLink="/admin/courses" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="BookIcon" class="w-4 h-4"></lucide-icon> Courses
+      </a>
+      <a routerLink="/admin/users" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="UsersIcon" class="w-4 h-4"></lucide-icon> Users
+      </a>
+      <a routerLink="/admin/sections" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="LayersIcon" class="w-4 h-4"></lucide-icon> Section Builder
+      </a>
+    </nav>
+    
+    <div class="p-6 border-t border-outline-variant/20">
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Theme</div>
+        <button (click)="themeService.toggleTheme()" class="text-primary hover:text-secondary transition-colors">
+          <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
+      <button (click)="firebaseService.logout()" class="flex items-center gap-2 text-sm font-bold text-error hover:opacity-80 transition-opacity w-full">
+        <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon> Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col h-full overflow-hidden bg-surface">
+    <!-- Topbar Mobile (hidden on desktop) -->
+    <header class="md:hidden h-16 bg-surface-container-low border-b border-outline-variant/20 flex items-center px-4">
+      <span class="font-black text-primary">KSR Admin</span>
+    </header>
+
+    <!-- Content Area -->
+    <div class="flex-grow overflow-auto p-8">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

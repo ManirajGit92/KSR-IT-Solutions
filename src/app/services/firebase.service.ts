@@ -26,29 +26,55 @@ export class FirebaseService {
   private googleProvider = new GoogleAuthProvider();
 
   private userSubject = new BehaviorSubject<User | null>(null);
+  private userProfileSubject = new BehaviorSubject<any>(null);
   public user$: Observable<User | null> = this.userSubject.asObservable();
+  public userProfile$: Observable<any> = this.userProfileSubject.asObservable();
+  private authInitPromise: Promise<void>;
+  private authInitResolve!: () => void;
 
   constructor() {
+    this.authInitPromise = new Promise(resolve => this.authInitResolve = resolve);
+
     onAuthStateChanged(this.auth, async (u) => {
       this.userSubject.next(u);
       if (u) {
         const userRef = doc(this.db, 'users', u.uid);
-        const userSnap = await getDoc(userRef);
+        let userSnap = await getDoc(userRef);
+        let profileData: any;
         if (!userSnap.exists()) {
-          await setDoc(userRef, {
+          profileData = {
             uid: u.uid,
             displayName: u.displayName,
             email: u.email,
             photoURL: u.photoURL,
-            role: 'student'
-          });
+            role: u.email === 'manirajmca.ac@gmail.com' ? 'admin' : 'student'
+          };
+          await setDoc(userRef, profileData);
+        } else {
+          profileData = userSnap.data();
+          if (u.email === 'manirajmca.ac@gmail.com' && profileData.role !== 'admin') {
+            profileData.role = 'admin';
+            await setDoc(userRef, profileData, { merge: true });
+          }
         }
+        this.userProfileSubject.next(profileData);
+      } else {
+        this.userProfileSubject.next(null);
       }
+      this.authInitResolve();
     });
   }
 
   get user() {
     return this.userSubject.value;
+  }
+
+  get userProfile() {
+    return this.userProfileSubject.value;
+  }
+
+  waitForAuthInit() {
+    return this.authInitPromise;
   }
 
   async signInWithGoogle() {

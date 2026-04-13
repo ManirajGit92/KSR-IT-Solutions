@@ -1,0 +1,24 @@
+<div class="flex h-screen bg-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container transition-colors duration-300">
+  <aside class="w-64 bg-surface-container-low border-r border-outline-variant/20 flex flex-col h-full">
+    <div class="p-6">
+      <a routerLink="/" class="text-xl font-black tracking-tighter text-primary">Student Portal</a>
+    </div>
+    <nav class="flex-grow flex flex-col gap-2 px-4 mt-6">
+      <a routerLink="/student" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="MonitorPlayIcon" class="w-4 h-4"></lucide-icon> Student Tracking
+      </a>
+      <a routerLink="/student/certificates" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
+        <lucide-icon [img]="AwardIcon" class="w-4 h-4"></lucide-icon> Certificates
+      </a>
+    </nav>
+    <div class="p-6 border-t border-outline-variant/20">
+      <button (click)="firebaseService.logout()" class="flex items-center gap-2 text-sm font-bold text-error hover:opacity-80 transition-opacity w-full">
+        <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon> Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <main class="flex-grow overflow-auto p-8 bg-surface">
+    <router-outlet></router-outlet>
+  </main>
+</div>
