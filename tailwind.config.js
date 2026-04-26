@@ -57,6 +57,31 @@ module.exports = {
       },
       fontFamily: {
         sans: ['"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'blob': {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
+        },
+        'shimmer': {
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.6s ease-out',
+        'fade-in': 'fade-in 0.5s ease-out',
+        'blob': 'blob 7s infinite',
+        'shimmer': 'shimmer 1.5s infinite',
       }
     },
   },

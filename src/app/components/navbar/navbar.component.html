@@ -1,65 +1,85 @@
-<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+<nav class="fixed top-0 w-full z-50 transition-all duration-300 glass border-b border-white/10 dark:border-white/5">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center gap-3">
       <button (click)="toggleMenu()" class="md:hidden">
         <lucide-icon *ngIf="isOpen" [img]="XIcon" class="w-6 h-6 text-primary"></lucide-icon>
         <lucide-icon *ngIf="!isOpen" [img]="MenuIcon" class="w-6 h-6 text-primary"></lucide-icon>
       </button>
-      <span class="text-xl font-black tracking-tighter text-primary">KSR IT Solutions</span>
+      <a routerLink="/" class="text-2xl font-black tracking-tighter text-gradient flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-tertiary flex items-center justify-center text-white text-lg shadow-lg">K</div>
+        <span>KSR IT</span>
+      </a>
     </div>
 
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#courses" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Courses</a>
-      <a href="#about" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">About Us</a>
-      <a href="#contact" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Contact</a>
-      <a routerLink="/admin" class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-container px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-primary-container hover:opacity-90 transition-all">
-        <lucide-icon [img]="ShieldIcon" class="w-4 h-4"></lucide-icon> Admin
+    <div class="hidden md:flex items-center gap-8 bg-surface-container/50 px-6 py-2 rounded-full border border-outline-variant/20 backdrop-blur-md">
+      <a href="#courses" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
+        Courses
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#about" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
+        About Us
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#contact" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
+        Contact
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
     </div>
 
     <div class="flex items-center gap-4">
-      <button (click)="themeService.toggleTheme()" class="text-primary hover:text-secondary transition-colors md:mr-2">
+      <a routerLink="/admin" class="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">
+        <lucide-icon [img]="ShieldIcon" class="w-4 h-4"></lucide-icon> Admin
+      </a>
+      
+      <button (click)="themeService.toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant text-primary transition-all duration-300">
         <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon" class="w-5 h-5"></lucide-icon>
       </button>
 
       <ng-container *ngIf="firebaseService.userProfile$ | async as profile; else loginTpl">
-        <a *ngIf="profile.role === 'student'" routerLink="/student" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors mr-4">
-          <lucide-icon [img]="LayoutDashboardIcon" class="w-4 h-4"></lucide-icon> My Courses
+        <a *ngIf="profile.role === 'student'" routerLink="/student" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors mr-2">
+          <lucide-icon [img]="LayoutDashboardIcon" class="w-4 h-4"></lucide-icon> Portal
         </a>
 
-        <div class="flex items-center gap-3">
-          <img [src]="profile.photoURL || ''" [alt]="profile.displayName || ''" class="w-8 h-8 rounded-full border border-outline-variant" />
+        <div class="flex items-center gap-3 bg-surface-container/80 rounded-full p-1 pr-4 border border-outline-variant/30 backdrop-blur-sm">
+          <img [src]="profile.photoURL || ''" [alt]="profile.displayName || ''" class="w-8 h-8 rounded-full border border-primary/20 shadow-sm" />
           <div class="hidden md:block text-left">
             <div class="text-xs font-bold text-primary leading-tight">{{ profile.displayName }}</div>
             <div class="text-[10px] text-on-surface-variant font-medium uppercase tracking-widest">{{ profile.role }}</div>
           </div>
-          <button (click)="firebaseService.logout()" class="text-sm font-bold text-primary hover:text-secondary transition-colors flex items-center gap-1">
+          <button (click)="firebaseService.logout()" class="ml-2 text-on-surface hover:text-error transition-colors" title="Logout">
             <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon>
-            <span class="hidden sm:inline">Logout</span>
           </button>
         </div>
       </ng-container>
       <ng-template #loginTpl>
         <button 
           (click)="firebaseService.signInWithGoogle()"
-          class="bg-primary-container text-on-primary px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-all active:scale-95"
+          class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all active:translate-y-0 relative overflow-hidden group"
         >
+          <span class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
           Enroll Now
         </button>
       </ng-template>
     </div>
   </div>
 
-  <!-- Mobile Menu using CSS transition instead of framer-motion -->
-  <div class="md:hidden bg-surface-container border-b border-outline-variant/10 overflow-hidden transition-all duration-300"
+  <!-- Mobile Menu -->
+  <div class="md:hidden glass border-b border-outline-variant/10 overflow-hidden transition-all duration-300 absolute w-full left-0 top-[72px]"
        [class.max-h-0]="!isOpen" [class.opacity-0]="!isOpen"
-       [class.max-h-64]="isOpen" [class.opacity-100]="isOpen">
-    <div class="px-6 py-4 flex flex-col gap-4">
-      <a href="#courses" (click)="isOpen = false" class="text-lg font-medium text-primary">Courses</a>
-      <a href="#about" (click)="isOpen = false" class="text-lg font-medium text-primary">About Us</a>
-      <a href="#contact" (click)="isOpen = false" class="text-lg font-medium text-primary">Contact</a>
-      <a routerLink="/admin" (click)="isOpen = false" class="inline-flex items-center gap-2 text-lg font-medium text-primary">
-        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> Admin
+       [class.max-h-96]="isOpen" [class.opacity-100]="isOpen">
+    <div class="px-6 py-6 flex flex-col gap-6">
+      <a href="#courses" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
+        <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5"></lucide-icon> Courses
+      </a>
+      <a href="#about" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
+        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> About Us
+      </a>
+      <a href="#contact" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
+        <lucide-icon [img]="LogOutIcon" class="w-5 h-5"></lucide-icon> Contact
+      </a>
+      <hr class="border-outline-variant/20">
+      <a routerLink="/admin" (click)="isOpen = false" class="text-lg font-bold text-on-surface-variant flex items-center gap-3">
+        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> Admin Access
       </a>
     </div>
   </div>

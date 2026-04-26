@@ -15,7 +15,7 @@ export class ContactFormComponent {
   firebaseService = inject(FirebaseService);
   
   status: 'idle' | 'loading' | 'success' | 'error' = 'idle';
-  formData = { name: '', email: '', message: '' };
+  formData = { name: '', email: '', phone: '', message: '' };
 
   readonly PhoneIcon = Phone;
   readonly MailIcon = Mail;
@@ -30,7 +30,7 @@ export class ContactFormComponent {
         submittedAt: serverTimestamp()
       });
       this.status = 'success';
-      this.formData = { name: '', email: '', message: '' };
+      this.formData = { name: '', email: '', phone: '', message: '' };
       setTimeout(() => this.status = 'idle', 5000);
     } catch (err) {
       console.error(err);

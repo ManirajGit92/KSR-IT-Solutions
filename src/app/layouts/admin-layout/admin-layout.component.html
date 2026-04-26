@@ -1,33 +1,39 @@
 <div class="flex h-screen bg-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container transition-colors duration-300">
   <!-- Sidebar -->
-  <aside class="w-64 bg-surface-container-low border-r border-outline-variant/20 flex flex-col h-full">
-    <div class="p-6">
-      <a routerLink="/" class="text-xl font-black tracking-tighter text-primary">KSR Admin</a>
+  <aside class="hidden md:flex w-72 bg-surface-container-low border-r border-outline-variant/10 flex-col h-full relative overflow-hidden">
+    <!-- Decorative Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/3 to-transparent pointer-events-none"></div>
+    
+    <div class="p-6 relative z-10">
+      <a routerLink="/" class="text-2xl font-black tracking-tighter text-gradient flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-tertiary flex items-center justify-center text-white text-lg shadow-lg">K</div>
+        <span>Admin</span>
+      </a>
     </div>
     
-    <nav class="flex-grow flex flex-col gap-2 px-4 mt-6">
-      <a routerLink="/admin" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
-        <lucide-icon [img]="LayoutDashboardIcon" class="w-4 h-4"></lucide-icon> Dashboard
+    <nav class="flex-grow flex flex-col gap-1.5 px-4 mt-4 relative z-10">
+      <a routerLink="/admin" [routerLinkActive]="['bg-gradient-to-r', 'from-primary', 'to-primary-container', 'text-on-primary', 'shadow-md', 'shadow-primary/20']" [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all font-semibold text-sm group">
+        <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5 group-hover:scale-110 transition-transform"></lucide-icon> Dashboard
       </a>
-      <a routerLink="/admin/courses" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
-        <lucide-icon [img]="BookIcon" class="w-4 h-4"></lucide-icon> Courses
+      <a routerLink="/admin/courses" [routerLinkActive]="['bg-gradient-to-r', 'from-primary', 'to-primary-container', 'text-on-primary', 'shadow-md', 'shadow-primary/20']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all font-semibold text-sm group">
+        <lucide-icon [img]="BookIcon" class="w-5 h-5 group-hover:scale-110 transition-transform"></lucide-icon> Courses
       </a>
-      <a routerLink="/admin/users" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
-        <lucide-icon [img]="UsersIcon" class="w-4 h-4"></lucide-icon> Users
+      <a routerLink="/admin/users" [routerLinkActive]="['bg-gradient-to-r', 'from-primary', 'to-primary-container', 'text-on-primary', 'shadow-md', 'shadow-primary/20']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all font-semibold text-sm group">
+        <lucide-icon [img]="UsersIcon" class="w-5 h-5 group-hover:scale-110 transition-transform"></lucide-icon> Users
       </a>
-      <a routerLink="/admin/sections" [routerLinkActive]="['bg-primary-container', 'text-on-primary-container']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors font-semibold text-sm">
-        <lucide-icon [img]="LayersIcon" class="w-4 h-4"></lucide-icon> Section Builder
+      <a routerLink="/admin/sections" [routerLinkActive]="['bg-gradient-to-r', 'from-primary', 'to-primary-container', 'text-on-primary', 'shadow-md', 'shadow-primary/20']" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all font-semibold text-sm group">
+        <lucide-icon [img]="LayersIcon" class="w-5 h-5 group-hover:scale-110 transition-transform"></lucide-icon> Section Builder
       </a>
     </nav>
     
-    <div class="p-6 border-t border-outline-variant/20">
+    <div class="p-6 border-t border-outline-variant/10 relative z-10">
       <div class="flex items-center justify-between mb-4">
         <div class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Theme</div>
-        <button (click)="themeService.toggleTheme()" class="text-primary hover:text-secondary transition-colors">
+        <button (click)="themeService.toggleTheme()" class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-primary transition-all">
           <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon" class="w-4 h-4"></lucide-icon>
         </button>
       </div>
-      <button (click)="firebaseService.logout()" class="flex items-center gap-2 text-sm font-bold text-error hover:opacity-80 transition-opacity w-full">
+      <button (click)="firebaseService.logout()" class="flex items-center gap-2 text-sm font-bold text-error hover:opacity-80 transition-opacity w-full px-4 py-2.5 rounded-xl hover:bg-error/10">
         <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon> Sign Out
       </button>
     </div>
@@ -35,13 +41,44 @@
 
   <!-- Main Content -->
   <main class="flex-grow flex flex-col h-full overflow-hidden bg-surface">
-    <!-- Topbar Mobile (hidden on desktop) -->
-    <header class="md:hidden h-16 bg-surface-container-low border-b border-outline-variant/20 flex items-center px-4">
-      <span class="font-black text-primary">KSR Admin</span>
+    <!-- Topbar Mobile -->
+    <header class="md:hidden h-16 glass border-b border-outline-variant/10 flex items-center justify-between px-4">
+      <a routerLink="/" class="font-black text-gradient flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-tertiary flex items-center justify-center text-white text-sm shadow-lg">K</div>
+        Admin
+      </a>
+      <div class="flex items-center gap-2">
+        <button (click)="themeService.toggleTheme()" class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-primary transition-all">
+          <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon" class="w-4 h-4"></lucide-icon>
+        </button>
+        <button (click)="firebaseService.logout()" class="text-error">
+          <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
     </header>
 
+    <!-- Mobile Bottom Nav -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 glass border-t border-outline-variant/10 flex items-center justify-around py-2">
+      <a routerLink="/admin" [routerLinkActive]="['text-primary']" [routerLinkActiveOptions]="{exact: true}" class="flex flex-col items-center gap-1 text-on-surface-variant p-2">
+        <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5"></lucide-icon>
+        <span class="text-[10px] font-bold">Dashboard</span>
+      </a>
+      <a routerLink="/admin/courses" [routerLinkActive]="['text-primary']" class="flex flex-col items-center gap-1 text-on-surface-variant p-2">
+        <lucide-icon [img]="BookIcon" class="w-5 h-5"></lucide-icon>
+        <span class="text-[10px] font-bold">Courses</span>
+      </a>
+      <a routerLink="/admin/users" [routerLinkActive]="['text-primary']" class="flex flex-col items-center gap-1 text-on-surface-variant p-2">
+        <lucide-icon [img]="UsersIcon" class="w-5 h-5"></lucide-icon>
+        <span class="text-[10px] font-bold">Users</span>
+      </a>
+      <a routerLink="/admin/sections" [routerLinkActive]="['text-primary']" class="flex flex-col items-center gap-1 text-on-surface-variant p-2">
+        <lucide-icon [img]="LayersIcon" class="w-5 h-5"></lucide-icon>
+        <span class="text-[10px] font-bold">Sections</span>
+      </a>
+    </nav>
+
     <!-- Content Area -->
-    <div class="flex-grow overflow-auto p-8">
+    <div class="flex-grow overflow-auto p-6 md:p-8 pb-20 md:pb-8">
       <router-outlet></router-outlet>
     </div>
   </main>

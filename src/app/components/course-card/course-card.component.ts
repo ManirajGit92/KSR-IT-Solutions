@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Course } from '../../services/firebase.service';
-import { LucideAngularModule, Calendar, BarChart } from 'lucide-angular';
+import { LucideAngularModule, Calendar, BarChart, Star, IndianRupee } from 'lucide-angular';
 
 @Component({
   selector: 'app-course-card',
@@ -15,4 +15,6 @@ export class CourseCardComponent {
 
   readonly CalendarIcon = Calendar;
   readonly BarChartIcon = BarChart;
+  readonly StarIcon = Star;
+  readonly RupeeIcon = IndianRupee;
 }

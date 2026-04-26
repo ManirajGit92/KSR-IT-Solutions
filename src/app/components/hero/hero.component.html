@@ -1,29 +1,102 @@
-<section class="relative bg-primary-container text-on-primary py-24 px-6 overflow-hidden">
-  <div class="absolute inset-0 opacity-10 pointer-events-none">
-    <img 
-      class="w-full h-full object-cover" 
-      src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6drP5eXzxss2mwg4zeczZnchwxlwXDnXBxVRMT2u6djVkJRgSBvmyPzP__p823T4kAgokiCAGHcTmnkCPpH7XBlXD4ywFEqZcOweXdSIbNmohCGRbi9yfQ7VoPUNymFKtrqSQ5b9qiYrF3VTIqhdllWnzixaHArdJEaJgFfFZ2RAaGnAdNfa4qBpkgUxnvD_LpdcAqSn-JuWlBWaOxVVQavkILpbAulaBjA_Ra4QpRdU68e8B9eKds2_TI9cMvE0mw0ENdpYa9x0"
-      alt="Data visualization"
-      referrerpolicy="no-referrer"
-    />
+<section class="relative min-h-screen flex items-center overflow-hidden bg-background pt-20">
+  <!-- Animated Background -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-primary/15 rounded-full mix-blend-multiply filter blur-[100px] animate-blob"></div>
+    <div class="absolute top-1/3 -right-1/4 w-[500px] h-[500px] bg-tertiary/15 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-1/4 left-1/3 w-[500px] h-[500px] bg-secondary/15 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000"></div>
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(var(--color-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-primary) 1px, transparent 1px); background-size: 60px 60px;"></div>
   </div>
-  <div class="relative z-10 max-w-4xl mx-auto text-center transform transition-all duration-700 translate-y-0 opacity-100">
-    <span class="inline-block px-4 py-1.5 rounded-full bg-secondary text-on-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-8">
-      Empower Your Career
-    </span>
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] text-white">
-      Master Data Technologies <br /> & Build Your Career
-    </h1>
-    <p class="text-on-primary-container text-xl font-light mb-12 leading-relaxed max-w-2xl mx-auto">
-      Expert-led training in Snowflake, DBT, and Advanced SQL. Transition into high-growth data roles with real-time projects.
-    </p>
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <button class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-secondary/20 active:scale-95 transition-transform">
-        View Courses
-      </button>
-      <button class="border border-white/20 bg-white/5 backdrop-blur-md text-white px-8 py-4 rounded-xl font-bold text-lg active:scale-95 transition-transform">
-        Contact Us
-      </button>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+    
+    <!-- Left: Text -->
+    <div class="flex-1 text-center lg:text-left animate-fade-in-up">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 mb-8 shadow-sm">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+        </span>
+        <span class="text-[11px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">New Batch Starting May 2026</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.05] text-on-background">
+        Launch Your <br class="hidden sm:block"/>
+        <span class="text-gradient">IT Career</span> <br class="hidden sm:block"/>
+        With Confidence
+      </h1>
+      
+      <p class="text-on-surface-variant text-base sm:text-lg md:text-xl font-medium mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
+        Industry-driven training in Full Stack, Cloud, Data Engineering & more. Get certified, build real projects, and land your dream tech job with our 95% placement record.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+        <button class="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:translate-y-0 relative overflow-hidden group">
+          <span class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-shimmer"></span>
+          🚀 Join Now
+        </button>
+        <a href="#courses" class="w-full sm:w-auto glass text-on-background px-8 py-4 rounded-xl font-bold text-base hover:border-primary/40 transition-all text-center border border-outline-variant/30">
+          📚 Explore Courses
+        </a>
+        <button class="w-full sm:w-auto border-2 border-green-500/30 text-green-600 dark:text-green-400 bg-green-500/5 px-8 py-4 rounded-xl font-bold text-base hover:bg-green-500/10 hover:border-green-500/50 transition-all">
+          🎯 Free Demo
+        </button>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="mt-12 pt-8 border-t border-outline-variant/20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center lg:text-left">
+        <div>
+          <span class="text-2xl sm:text-3xl font-black text-gradient">500+</span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Students Placed</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-black text-gradient">10+</span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Expert Trainers</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-black text-gradient">4.9★</span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Avg. Rating</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-black text-gradient">95%</span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Placement Rate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Visual -->
+    <div class="flex-1 w-full max-w-lg lg:max-w-none relative animate-fade-in animation-delay-500">
+      <div class="relative">
+        <div class="aspect-[4/3] rounded-3xl overflow-hidden glass p-3 shadow-2xl shadow-primary/10 border border-outline-variant/20">
+          <img class="w-full h-full object-cover rounded-2xl" 
+               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+               alt="Students collaborating on coding projects" loading="eager"/>
+        </div>
+        
+        <!-- Floating Cards -->
+        <div class="absolute -bottom-5 -left-5 glass px-5 py-3.5 rounded-2xl shadow-xl border border-outline-variant/20 flex items-center gap-3 animate-fade-in-up animation-delay-2000">
+          <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-on-background">Placement Guaranteed</p>
+            <p class="text-[11px] text-on-surface-variant">On select programs</p>
+          </div>
+        </div>
+        
+        <div class="absolute -top-4 -right-4 glass px-5 py-3.5 rounded-2xl shadow-xl border border-outline-variant/20 animate-fade-in-up animation-delay-4000">
+          <div class="flex items-center gap-2">
+            <div class="flex -space-x-2">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 border-2 border-white text-white text-[10px] font-bold flex items-center justify-center">R</div>
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white text-white text-[10px] font-bold flex items-center justify-center">P</div>
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 border-2 border-white text-white text-[10px] font-bold flex items-center justify-center">V</div>
+            </div>
+            <p class="text-[11px] font-bold text-on-surface-variant">120+ Active Learners</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

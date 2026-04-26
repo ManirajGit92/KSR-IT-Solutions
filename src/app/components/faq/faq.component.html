@@ -1,0 +1,39 @@
+<section class="py-20 md:py-28 px-6 bg-surface relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute -bottom-32 right-1/4 w-72 h-72 bg-tertiary/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-3xl mx-auto relative z-10">
+    <div class="text-center mb-14 md:mb-20 animate-fade-in-up">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4 block">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight mb-4">Frequently <span class="text-gradient">Asked Questions</span></h2>
+      <p class="text-on-surface-variant text-base sm:text-lg max-w-xl mx-auto font-medium">Everything you need to know before joining. Can't find your answer? Contact us!</p>
+    </div>
+
+    <div class="space-y-3">
+      <div *ngFor="let faq of faqs; let i = index"
+           class="glass rounded-2xl border overflow-hidden transition-all duration-300 animate-fade-in-up"
+           [ngClass]="faq.open ? 'border-primary' : 'border-outline-variant/15'"
+           [style.animation-delay]="i * 80 + 'ms'">
+        
+        <button (click)="toggle(i)" 
+                class="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-surface-container-lowest/50 transition-colors">
+          <span class="font-bold text-on-surface text-sm sm:text-base">{{ faq.q }}</span>
+          <lucide-icon [img]="ChevronDownIcon" 
+                       class="w-5 h-5 text-on-surface-variant flex-shrink-0 transition-transform duration-300"
+                       [class.rotate-180]="faq.open"></lucide-icon>
+        </button>
+        
+        <div class="overflow-hidden transition-all duration-300"
+             [class.max-h-0]="!faq.open"
+             [class.max-h-60]="faq.open"
+             [class.opacity-0]="!faq.open"
+             [class.opacity-100]="faq.open">
+          <div class="px-6 pb-5 text-sm text-on-surface-variant font-medium leading-relaxed border-t border-outline-variant/10 pt-4">
+            {{ faq.a }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

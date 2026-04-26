@@ -1,79 +1,110 @@
-<section id="contact" class="py-24 px-6 bg-surface">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-    <div>
-      <h2 class="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
-      <p class="text-lg text-on-surface-variant mb-12">Have questions? We're here to help you navigate your career path.</p>
-      
-      <div class="space-y-8">
-        <div class="flex items-center gap-6">
-          <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary">
-            <lucide-icon [img]="PhoneIcon" class="w-6 h-6"></lucide-icon>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Call Us</div>
-            <div class="text-lg font-bold text-primary">+91 98765 43210</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-6">
-          <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary">
-            <lucide-icon [img]="MailIcon" class="w-6 h-6"></lucide-icon>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Email Us</div>
-            <div class="text-lg font-bold text-primary">admissions&#64;ksrit.com</div>
-          </div>
-        </div>
-      </div>
+<section id="contact" class="py-20 md:py-28 px-6 bg-surface-container-low relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent"></div>
+    <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-14 md:mb-20 animate-fade-in-up">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4 block">Contact Us</span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight mb-4">Let's Start Your <span class="text-gradient">Journey</span></h2>
+      <p class="text-on-surface-variant text-base sm:text-lg max-w-xl mx-auto font-medium">Have questions? Reach out via form, phone, or WhatsApp. We respond within 2 hours!</p>
     </div>
 
-    <div class="bg-surface-container-low p-8 md:p-10 rounded-3xl border border-outline-variant/10">
-      <form (ngSubmit)="handleSubmit()" class="space-y-6">
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Your Name</label>
-          <input 
-            required
-            name="name"
-            [(ngModel)]="formData.name"
-            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
-            placeholder="John Doe" 
-            type="text" 
-          />
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+      <!-- Contact Info + Map -->
+      <div class="lg:col-span-2 flex flex-col gap-5">
+        <!-- Phone -->
+        <div class="glass p-5 rounded-2xl border border-outline-variant/10 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform flex-shrink-0">
+              <lucide-icon [img]="PhoneIcon" class="w-5 h-5"></lucide-icon>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Call Us</div>
+              <div class="text-base font-bold text-on-surface">+91 98765 43210</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Email Address</label>
-          <input 
-            required
-            name="email"
-            [(ngModel)]="formData.email"
-            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
-            placeholder="john@example.com" 
-            type="email" 
-          />
+        
+        <!-- Email -->
+        <div class="glass p-5 rounded-2xl border border-outline-variant/10 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-tertiary to-teal-500 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform flex-shrink-0">
+              <lucide-icon [img]="MailIcon" class="w-5 h-5"></lucide-icon>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Email Us</div>
+              <div class="text-base font-bold text-on-surface">admissions&#64;ksrit.com</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-3 ml-1">Message</label>
-          <textarea 
-            required
-            name="message"
-            [(ngModel)]="formData.message"
-            class="w-full px-6 py-4 bg-surface-container-lowest border-0 rounded-xl focus:ring-2 focus:ring-secondary text-sm transition-all outline-none" 
-            placeholder="How can we help you?" 
-            rows="4"
-          ></textarea>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/919876543210?text=Hi%20KSR%20IT%2C%20I%20want%20to%20know%20about%20your%20courses" target="_blank" rel="noopener"
+           class="flex items-center gap-4 p-5 rounded-2xl bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-green-600/25 hover:shadow-green-600/40 group">
+          <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-widest opacity-80 mb-0.5">Chat on WhatsApp</div>
+            <div class="text-base font-bold">Get Instant Response →</div>
+          </div>
+        </a>
+
+        <!-- Map Embed -->
+        <div class="glass rounded-2xl border border-outline-variant/10 overflow-hidden flex-grow min-h-[180px]">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.56659940445!2d80.0884!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1640000000000"
+            class="w-full h-full min-h-[180px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
-        <button 
-          [disabled]="status === 'loading'"
-          class="w-full py-5 rounded-xl font-bold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
-          [ngClass]="status === 'success' ? 'bg-green-600 text-white' : 'bg-secondary text-on-secondary shadow-secondary/20'"
-        >
-          <ng-container *ngIf="status === 'loading'">Sending...</ng-container>
-          <ng-container *ngIf="status === 'success'"><lucide-icon [img]="CheckIcon" class="w-5 h-5"></lucide-icon> Sent Successfully</ng-container>
-          <ng-container *ngIf="status !== 'loading' && status !== 'success'">Send Message</ng-container>
-        </button>
-        <p *ngIf="status === 'error'" class="text-red-500 text-xs flex items-center gap-1 mt-2">
-          <lucide-icon [img]="AlertIcon" class="w-4 h-4"></lucide-icon> Something went wrong. Please try again.
-        </p>
-      </form>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-3">
+        <div class="glass p-7 sm:p-9 rounded-3xl border border-outline-variant/10">
+          <form (ngSubmit)="handleSubmit()" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-2.5 ml-1">Your Name</label>
+                <input required name="name" [(ngModel)]="formData.name"
+                       class="w-full px-5 py-3.5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-sm transition-all outline-none text-on-surface font-medium placeholder:text-on-surface-variant/40" 
+                       placeholder="Full name" type="text"/>
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-2.5 ml-1">Email Address</label>
+                <input required name="email" [(ngModel)]="formData.email"
+                       class="w-full px-5 py-3.5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-sm transition-all outline-none text-on-surface font-medium placeholder:text-on-surface-variant/40" 
+                       placeholder="you@example.com" type="email"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-2.5 ml-1">Phone Number</label>
+              <input name="phone" [(ngModel)]="formData.phone"
+                     class="w-full px-5 py-3.5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-sm transition-all outline-none text-on-surface font-medium placeholder:text-on-surface-variant/40" 
+                     placeholder="+91 XXXXX XXXXX" type="tel"/>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-primary mb-2.5 ml-1">Message</label>
+              <textarea required name="message" [(ngModel)]="formData.message"
+                        class="w-full px-5 py-3.5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-sm transition-all outline-none text-on-surface font-medium placeholder:text-on-surface-variant/40 resize-none" 
+                        placeholder="I'm interested in..." rows="4"></textarea>
+            </div>
+            <button [disabled]="status === 'loading'"
+                    class="w-full py-4 rounded-xl font-bold text-sm shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 relative overflow-hidden group"
+                    [ngClass]="status === 'success' ? 'bg-green-600 text-white shadow-green-600/30' : 'bg-gradient-to-r from-primary to-secondary text-white shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0'">
+              <span *ngIf="status !== 'success'" class="absolute inset-0 w-full h-full bg-white/10 -translate-x-full group-hover:animate-shimmer"></span>
+              <ng-container *ngIf="status === 'loading'"><div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> Sending...</ng-container>
+              <ng-container *ngIf="status === 'success'"><lucide-icon [img]="CheckIcon" class="w-5 h-5"></lucide-icon> Sent Successfully!</ng-container>
+              <ng-container *ngIf="status !== 'loading' && status !== 'success'">Send Message →</ng-container>
+            </button>
+            <p *ngIf="status === 'error'" class="text-red-500 text-xs flex items-center gap-2 mt-2 font-medium">
+              <lucide-icon [img]="AlertIcon" class="w-4 h-4"></lucide-icon> Something went wrong. Please try again.
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>

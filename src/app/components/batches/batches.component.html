@@ -1,0 +1,48 @@
+<section class="py-20 md:py-28 px-6 bg-surface-container-low relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent"></div>
+    <div class="absolute -top-32 left-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-14 md:mb-20 animate-fade-in-up">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4 block">Upcoming Batches</span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight mb-4">Don't Miss the <span class="text-gradient">Next Batch</span></h2>
+      <p class="text-on-surface-variant text-base sm:text-lg max-w-xl mx-auto font-medium">Reserve your seat now. Limited slots per batch to ensure personalized attention.</p>
+    </div>
+
+    <div class="space-y-4">
+      <div *ngFor="let batch of batches; let i = index"
+           class="group glass rounded-2xl border border-outline-variant/15 p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20 animate-fade-in-up"
+           [style.animation-delay]="i * 100 + 'ms'">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <!-- Left: Course Info -->
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <h4 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">{{ batch.course }}</h4>
+              <span class="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest" [ngClass]="batch.statusColor">{{ batch.status }}</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-sm text-on-surface-variant font-medium">
+              <span class="flex items-center gap-1.5">
+                <lucide-icon [img]="CalendarIcon" class="w-3.5 h-3.5 text-secondary"></lucide-icon> {{ batch.startDate }}
+              </span>
+              <span class="flex items-center gap-1.5">
+                <lucide-icon [img]="ClockIcon" class="w-3.5 h-3.5 text-secondary"></lucide-icon> {{ batch.timing }}
+              </span>
+              <span class="flex items-center gap-1.5">
+                <lucide-icon [img]="UsersIcon" class="w-3.5 h-3.5 text-secondary"></lucide-icon> {{ batch.seats }}
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-surface-container text-[11px] font-bold text-on-surface-variant">{{ batch.mode }}</span>
+            </div>
+          </div>
+          
+          <!-- Right: CTA -->
+          <button class="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all active:translate-y-0 whitespace-nowrap self-start sm:self-center">
+            Reserve Seat <lucide-icon [img]="ArrowRightIcon" class="w-4 h-4"></lucide-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

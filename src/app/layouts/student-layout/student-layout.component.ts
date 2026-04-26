@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { ThemeService } from '../../services/theme.service';
-import { LucideAngularModule, MonitorPlay, Award, LogOut } from 'lucide-angular';
+import { LucideAngularModule, MonitorPlay, Award, LogOut, Sun, Moon, Home } from 'lucide-angular';
 
 @Component({
   selector: 'app-student-layout',
@@ -18,4 +18,7 @@ export class StudentLayoutComponent {
   readonly MonitorPlayIcon = MonitorPlay;
   readonly AwardIcon = Award;
   readonly LogOutIcon = LogOut;
+  readonly SunIcon = Sun;
+  readonly MoonIcon = Moon;
+  readonly HomeIcon = Home;
 }

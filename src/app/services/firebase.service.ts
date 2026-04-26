@@ -13,6 +13,9 @@ export interface Course {
   level: string;
   imageUrl: string;
   badge?: string;
+  price?: string;
+  originalPrice?: string;
+  rating?: string;
 }
 
 @Injectable({
