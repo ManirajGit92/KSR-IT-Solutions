@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { LucideAngularModule, GripVertical, Eye, EyeOff, Pencil, Plus, Trash2, Save, X, History, Code, Layout, RotateCcw, AlertCircle, CheckCircle2 } from 'lucide-angular';
+import { LucideAngularModule, GripVertical, Eye, EyeOff, Pencil, Plus, Trash2, Save, X, History, Code, Layout, RotateCcw, AlertCircle, CheckCircle2, Calendar, HelpCircle } from 'lucide-angular';
 import { FirebaseService, HomepageSection, ContentVersion } from '../../../services/firebase.service';
 
 @Component({
@@ -362,6 +362,24 @@ export class AdminSectionsComponent implements OnInit {
           'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80'
         ]
       } 
+    },
+    {
+      type: 'batches',
+      name: 'Upcoming Batches',
+      icon: Calendar,
+      content: {
+        title: 'Upcoming <span class="text-gradient">Batches</span>',
+        subtitle: 'Join our professional training programs. Limited seats available.'
+      }
+    },
+    {
+      type: 'faq',
+      name: 'FAQ Section',
+      icon: HelpCircle,
+      content: {
+        title: 'Frequently Asked <span class="text-gradient">Questions</span>',
+        subtitle: 'Everything you need to know about our training and placement.'
+      }
     }
   ];
 

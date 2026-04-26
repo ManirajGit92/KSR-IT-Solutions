@@ -64,8 +64,10 @@ export class HomeComponent implements OnInit {
       { name: 'Why Us', type: 'about', order: 2, visible: true, anchor: 'about', content: { title: 'Why Choose KSR IT?', subtitle: 'We build careers with industry-aligned curriculum.' } },
       { name: 'Programs', type: 'courses', order: 3, visible: true, anchor: 'courses', content: { title: 'Our Specializations', subtitle: 'Master the tech of tomorrow.' } },
       { name: 'Trainers', type: 'trainers', order: 4, visible: true, anchor: 'trainers', content: { title: 'Learn from Experts', subtitle: 'MNC professionals at your service.' } },
-      { name: 'Success Stories', type: 'testimonials', order: 5, visible: true, anchor: 'testimonials', content: { title: 'Student Success', subtitle: 'Join our list of high-earning graduates.' } },
-      { name: 'Contact Us', type: 'contact', order: 6, visible: true, anchor: 'contact', content: { title: 'Get in Touch', subtitle: 'Start your journey today.' } }
+      { name: 'Upcoming Batches', type: 'batches', order: 5, visible: true, anchor: 'batches', content: { title: 'Upcoming <span class="text-gradient">Batches</span>', subtitle: 'Join our professional training programs.' } },
+      { name: 'Success Stories', type: 'testimonials', order: 6, visible: true, anchor: 'testimonials', content: { title: 'Student Success', subtitle: 'Join our list of high-earning graduates.' } },
+      { name: 'Frequently Asked Questions', type: 'faq', order: 7, visible: true, anchor: 'faq', content: { title: 'Have <span class="text-gradient">Questions?</span>', subtitle: 'Find answers to common queries about our training.' } },
+      { name: 'Contact Us', type: 'contact', order: 8, visible: true, anchor: 'contact', content: { title: 'Get in Touch', subtitle: 'Start your journey today.' } }
     ];
 
     if (confirm('This will seed the initial content for your website. Proceed?')) {

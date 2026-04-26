@@ -6,73 +6,88 @@
         <lucide-icon *ngIf="!isOpen" [img]="MenuIcon" class="w-6 h-6 text-primary"></lucide-icon>
       </button>
       <a routerLink="/" class="text-2xl font-black tracking-tighter text-gradient flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-tertiary flex items-center justify-center text-white text-lg shadow-lg">K</div>
+        <div
+          class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-tertiary flex items-center justify-center text-white text-lg shadow-lg">
+          K</div>
         <span>KSR IT</span>
       </a>
     </div>
 
-    <div class="hidden md:flex items-center gap-6 bg-surface-container/50 px-6 py-2 rounded-full border border-outline-variant/20 backdrop-blur-md">
-      <a href="#home" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+    <div
+      class="hidden md:flex items-center gap-6 bg-surface-container/50 px-6 py-2 rounded-full border border-outline-variant/20 backdrop-blur-md">
+      <a href="#home"
+        class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Home
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#about" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+      <a href="#about"
+        class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         About
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#courses" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+      <a href="#courses"
+        class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Courses
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#trainers" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+      <a href="#trainers"
+        class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Trainers
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#batches" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+      <!-- <a href="#batches" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Batches
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
       <a href="#faq" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         FAQ
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-      </a>
-      <a href="#contact" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+      </a> -->
+      <a href="#contact"
+        class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Contact
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
     </div>
 
     <div class="flex items-center gap-4">
-      <a routerLink="/admin" class="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">
+      <a routerLink="/admin"
+        class="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">
         <lucide-icon [img]="ShieldIcon" class="w-4 h-4"></lucide-icon> Admin
       </a>
-      
-      <button (click)="themeService.toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant text-primary transition-all duration-300">
-        <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon" class="w-5 h-5"></lucide-icon>
+
+      <button (click)="themeService.toggleTheme()"
+        class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant text-primary transition-all duration-300">
+        <lucide-icon [img]="themeService.getCurrentTheme() === 'dark' ? SunIcon : MoonIcon"
+          class="w-5 h-5"></lucide-icon>
       </button>
 
       <ng-container *ngIf="firebaseService.userProfile$ | async as profile; else loginTpl">
-        <a *ngIf="profile.role === 'student'" routerLink="/student" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors mr-2">
+        <a *ngIf="profile.role === 'student'" routerLink="/student"
+          class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors mr-2">
           <lucide-icon [img]="LayoutDashboardIcon" class="w-4 h-4"></lucide-icon> Portal
         </a>
 
-        <div class="flex items-center gap-3 bg-surface-container/80 rounded-full p-1 pr-4 border border-outline-variant/30 backdrop-blur-sm">
-          <img [src]="profile.photoURL || ''" [alt]="profile.displayName || ''" class="w-8 h-8 rounded-full border border-primary/20 shadow-sm" />
+        <div
+          class="flex items-center gap-3 bg-surface-container/80 rounded-full p-1 pr-4 border border-outline-variant/30 backdrop-blur-sm">
+          <img [src]="profile.photoURL || ''" [alt]="profile.displayName || ''"
+            class="w-8 h-8 rounded-full border border-primary/20 shadow-sm" />
           <div class="hidden md:block text-left">
             <div class="text-xs font-bold text-primary leading-tight">{{ profile.displayName }}</div>
-            <div class="text-[10px] text-on-surface-variant font-medium uppercase tracking-widest">{{ profile.role }}</div>
+            <div class="text-[10px] text-on-surface-variant font-medium uppercase tracking-widest">{{ profile.role }}
+            </div>
           </div>
-          <button (click)="firebaseService.logout()" class="ml-2 text-on-surface hover:text-error transition-colors" title="Logout">
+          <button (click)="firebaseService.logout()" class="ml-2 text-on-surface hover:text-error transition-colors"
+            title="Logout">
             <lucide-icon [img]="LogOutIcon" class="w-4 h-4"></lucide-icon>
           </button>
         </div>
       </ng-container>
       <ng-template #loginTpl>
-        <button 
-          (click)="firebaseService.signInWithGoogle()"
-          class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all active:translate-y-0 relative overflow-hidden group"
-        >
-          <span class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+        <button (click)="firebaseService.signInWithGoogle()"
+          class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all active:translate-y-0 relative overflow-hidden group">
+          <span
+            class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
           Enroll Now
         </button>
       </ng-template>
@@ -80,29 +95,37 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div class="md:hidden glass border-b border-outline-variant/10 overflow-hidden transition-all duration-300 absolute w-full left-0 top-[72px]"
-       [class.max-h-0]="!isOpen" [class.opacity-0]="!isOpen"
-       [class.max-h-[80vh] group-hover:overflow-y-auto]="isOpen" [class.opacity-100]="isOpen">
+  <div
+    class="md:hidden glass border-b border-outline-variant/10 overflow-hidden transition-all duration-300 absolute w-full left-0 top-[72px]"
+    [class.max-h-0]="!isOpen" [class.opacity-0]="!isOpen" [class.max-h-[80vh] group-hover:overflow-y-auto]="isOpen"
+    [class.opacity-100]="isOpen">
     <div class="px-6 py-6 grid grid-cols-2 gap-4">
-      <a href="#home" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#home" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5"></lucide-icon> Home
       </a>
-      <a href="#about" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#about" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> About
       </a>
-      <a href="#courses" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#courses" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="BookIcon" class="w-5 h-5"></lucide-icon> Courses
       </a>
-      <a href="#trainers" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#trainers" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="UsersIcon" class="w-5 h-5"></lucide-icon> Trainers
       </a>
-      <a href="#batches" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#batches" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="CalendarIcon" class="w-5 h-5"></lucide-icon> Batches
       </a>
-      <a href="#contact" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+      <a href="#contact" (click)="isOpen = false"
+        class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="LogOutIcon" class="w-5 h-5"></lucide-icon> Contact
       </a>
-      <a routerLink="/admin" (click)="isOpen = false" class="col-span-2 p-4 rounded-2xl bg-primary text-white font-bold flex items-center justify-center gap-3">
+      <a routerLink="/admin" (click)="isOpen = false"
+        class="col-span-2 p-4 rounded-2xl bg-primary text-white font-bold flex items-center justify-center gap-3">
         <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> Admin Portal
       </a>
     </div>
