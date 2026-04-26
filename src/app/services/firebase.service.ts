@@ -93,6 +93,16 @@ export interface HomepageSection {
   order: number;
   visible: boolean;
   content: any;
+  schema?: any;
+  anchor?: string;
+}
+
+export interface ContentVersion {
+  id: string;
+  sectionId: string;
+  content: any;
+  timestamp: any;
+  author: string;
 }
 
 @Injectable({
@@ -189,10 +199,28 @@ export class FirebaseService {
     return docRef.id;
   }
 
-  async updateDocument(collectionName: string, id: string, data: any): Promise<void> {
-    const { doc, updateDoc } = await import('firebase/firestore');
+  async updateDocument(collectionName: string, id: string, data: any, saveHistory = false): Promise<void> {
+    const { doc, updateDoc, collection, addDoc, serverTimestamp } = await import('firebase/firestore');
     const docRef = doc(this.db, collectionName, id);
+    
+    if (saveHistory && collectionName === 'homepage_sections' && data.content) {
+      await addDoc(collection(this.db, 'section_history'), {
+        sectionId: id,
+        content: data.content,
+        timestamp: serverTimestamp(),
+        author: this.userProfile?.displayName || 'Admin'
+      });
+    }
+
     return updateDoc(docRef, data);
+  }
+
+  async getHistory(sectionId: string): Promise<ContentVersion[]> {
+    const { collection, query, where, getDocs, orderBy } = await import('firebase/firestore');
+    const historyRef = collection(this.db, 'section_history');
+    const q = query(historyRef, where('sectionId', '==', sectionId), orderBy('timestamp', 'desc'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as ContentVersion));
   }
 
   async deleteDocument(collectionName: string, id: string): Promise<void> {

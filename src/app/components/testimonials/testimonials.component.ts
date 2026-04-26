@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Star } from 'lucide-angular';
 
@@ -9,6 +9,10 @@ import { LucideAngularModule, Star } from 'lucide-angular';
   templateUrl: './testimonials.component.html'
 })
 export class TestimonialsComponent {
+  @Input() content: any = {
+    title: 'Our Student <span class="text-gradient">Success Stories</span>',
+    subtitle: 'Thousands of graduates have transformed their careers through KSR IT. Here is what they have to say about their journey.'
+  };
   stats = [
     { value: '500+', label: 'Students Placed' },
     { value: '95%', label: 'Satisfaction Rate' },

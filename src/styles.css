@@ -141,6 +141,10 @@
   background: var(--color-primary); 
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--color-background);

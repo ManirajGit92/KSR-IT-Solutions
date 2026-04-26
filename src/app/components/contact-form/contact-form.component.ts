@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../services/firebase.service';
@@ -12,6 +12,10 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
   templateUrl: './contact-form.component.html'
 })
 export class ContactFormComponent {
+  @Input() content: any = {
+    title: 'Get in <span class="text-gradient">Touch</span>',
+    subtitle: 'Have questions? Our team is here to help you choose the right path for your career goals.'
+  };
   firebaseService = inject(FirebaseService);
   
   status: 'idle' | 'loading' | 'success' | 'error' = 'idle';

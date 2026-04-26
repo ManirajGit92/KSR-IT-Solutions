@@ -46,8 +46,46 @@ service cloud.firestore {
 
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.role == 'student';
-      allow update: if isOwner(userId) && request.resource.data.role == resource.data.role;
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId) || isAdmin();
+    }
+
+    match /homepage_sections/{sectionId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /section_history/{historyId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /trainers/{trainerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /testimonials/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /batches/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /faq/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /enquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /students/{id} {
+      allow read, write: if isAdmin();
     }
 
     match /enrollments/{enrollmentId} {
@@ -56,9 +94,14 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
 
-    match /inquiries/{inquiryId} {
+    match /analytics_events/{id} {
       allow create: if true;
       allow read, update, delete: if isAdmin();
+    }
+
+    match /analytics_daily/{id} {
+      allow create, update: if true;
+      allow read, delete: if isAdmin();
     }
   }
 }

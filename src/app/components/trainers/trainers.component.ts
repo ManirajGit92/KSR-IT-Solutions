@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Linkedin, Star } from 'lucide-angular';
 
@@ -9,6 +9,10 @@ import { LucideAngularModule, Linkedin, Star } from 'lucide-angular';
   templateUrl: './trainers.component.html'
 })
 export class TrainersComponent {
+  @Input() content: any = {
+    title: 'Learn From the <span class="text-gradient">Best</span>',
+    subtitle: 'Our instructors are veteran MNC professionals with decades of combined experience in top-tier technology companies.'
+  };
   readonly LinkedinIcon = Linkedin;
   readonly StarIcon = Star;
 

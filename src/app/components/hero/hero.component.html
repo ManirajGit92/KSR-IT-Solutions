@@ -18,31 +18,25 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
         </span>
-        <span class="text-[11px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">New Batch Starting May 2026</span>
+        <span class="text-[11px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">{{ content.badgeText || 'Enrollment Open' }}</span>
       </div>
       
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.05] text-on-background">
-        Launch Your <br class="hidden sm:block"/>
-        <span class="text-gradient">IT Career</span> <br class="hidden sm:block"/>
-        With Confidence
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.05] text-on-background" [innerHTML]="content.title">
       </h1>
       
       <p class="text-on-surface-variant text-base sm:text-lg md:text-xl font-medium mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
-        Industry-driven training in Full Stack, Cloud, Data Engineering & more. Get certified, build real projects, and land your dream tech job with our 95% placement record.
+        {{ content.subtitle }}
       </p>
       
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
-        <button class="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:translate-y-0 relative overflow-hidden group">
+        <a [href]="content.buttonLink" class="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:translate-y-0 relative overflow-hidden group text-center">
           <span class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-shimmer"></span>
-          🚀 Join Now
-        </button>
+          {{ content.buttonText }}
+        </a>
         <a href="#courses" class="w-full sm:w-auto glass text-on-background px-8 py-4 rounded-xl font-bold text-base hover:border-primary/40 transition-all text-center border border-outline-variant/30">
           📚 Explore Courses
         </a>
-        <button class="w-full sm:w-auto border-2 border-green-500/30 text-green-600 dark:text-green-400 bg-green-500/5 px-8 py-4 rounded-xl font-bold text-base hover:bg-green-500/10 hover:border-green-500/50 transition-all">
-          🎯 Free Demo
-        </button>
       </div>
 
       <!-- Trust Indicators -->

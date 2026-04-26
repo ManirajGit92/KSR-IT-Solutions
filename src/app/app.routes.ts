@@ -13,6 +13,7 @@ import { AdminBatchesComponent } from './pages/admin/admin-batches/admin-batches
 import { AdminFaqsComponent } from './pages/admin/admin-faqs/admin-faqs.component';
 import { AdminEnquiriesComponent } from './pages/admin/admin-enquiries/admin-enquiries.component';
 import { AdminStudentsComponent } from './pages/admin/admin-students/admin-students.component';
+import { AdminAnalyticsComponent } from './pages/admin/admin-analytics/admin-analytics.component';
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentCertificatesComponent } from './pages/student/student-certificates/student-certificates.component';
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
@@ -42,7 +43,8 @@ export const routes: Routes = [
       { path: 'batches', component: AdminBatchesComponent },
       { path: 'faqs', component: AdminFaqsComponent },
       { path: 'enquiries', component: AdminEnquiriesComponent },
-      { path: 'students', component: AdminStudentsComponent }
+      { path: 'students', component: AdminStudentsComponent },
+      { path: 'analytics', component: AdminAnalyticsComponent }
     ]
   },
   {

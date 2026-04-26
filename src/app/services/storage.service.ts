@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
+import { Injectable, inject } from '@angular/core';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject, FirebaseStorage } from 'firebase/storage';
 import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  private storage = getStorage(this.firebaseService.app);
+  private firebaseService = inject(FirebaseService);
+  private storage: FirebaseStorage = getStorage(this.firebaseService.app);
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor() { }
 
   async uploadFile(path: string, file: File): Promise<string> {
     const storageRef = ref(this.storage, path);

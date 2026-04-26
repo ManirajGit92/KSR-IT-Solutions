@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, ChevronDown } from 'lucide-angular';
 
@@ -9,6 +9,10 @@ import { LucideAngularModule, ChevronDown } from 'lucide-angular';
   templateUrl: './faq.component.html'
 })
 export class FaqComponent {
+  @Input() content: any = {
+    title: 'Frequently Asked <span class="text-gradient">Questions</span>',
+    subtitle: 'Everything you need to know about our training programs, placement support, and certification process.'
+  };
   readonly ChevronDownIcon = ChevronDown;
 
   faqs = [

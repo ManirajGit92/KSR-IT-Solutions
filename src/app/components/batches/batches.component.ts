@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Calendar, Clock, Users, ArrowRight } from 'lucide-angular';
 
@@ -9,6 +9,10 @@ import { LucideAngularModule, Calendar, Clock, Users, ArrowRight } from 'lucide-
   templateUrl: './batches.component.html'
 })
 export class BatchesComponent {
+  @Input() content: any = {
+    title: 'Upcoming <span class="text-gradient">Batches</span>',
+    subtitle: 'Reserve your spot in our highly sought-after professional training programs. Limited seats available for personalized attention.'
+  };
   readonly CalendarIcon = Calendar;
   readonly ClockIcon = Clock;
   readonly UsersIcon = Users;

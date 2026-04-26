@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Cloud, Terminal, Database, Code, HardDrive, Layout } from 'lucide-angular';
 
@@ -9,6 +9,10 @@ import { LucideAngularModule, Cloud, Terminal, Database, Code, HardDrive, Layout
   templateUrl: './competencies.component.html'
 })
 export class CompetenciesComponent {
+  @Input() content: any = {
+    title: 'Core <span class="text-gradient">Competencies</span>',
+    subtitle: 'Master the tools and technologies that drive modern data and software engineering.'
+  };
   items = [
     { icon: Cloud, title: "Snowflake", desc: "Cloud Data Platform architecture and performance." },
     { icon: Terminal, title: "DBT", desc: "Modern data transformation and modeling." },

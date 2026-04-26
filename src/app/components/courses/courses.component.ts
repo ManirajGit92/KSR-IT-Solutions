@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FirebaseService, Course } from '../../services/firebase.service';
 import { CourseCardComponent } from '../course-card/course-card.component';
@@ -57,6 +57,10 @@ const COURSES_SEED: Omit<Course, 'id'>[] = [
   templateUrl: './courses.component.html'
 })
 export class CoursesComponent implements OnInit {
+  @Input() content: any = {
+    title: 'Explore Our <span class="text-gradient">Programs</span>',
+    subtitle: 'From beginner to expert, we offer specialized training paths designed to make you industry-ready.'
+  };
   firebaseService = inject(FirebaseService);
   courses: Course[] = [];
   loading = true;

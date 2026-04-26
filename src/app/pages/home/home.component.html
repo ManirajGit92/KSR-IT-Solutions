@@ -1,35 +1,52 @@
-<!-- 1. Hero Banner -->
-<app-hero></app-hero>
+<div *ngIf="loading" class="min-h-screen flex items-center justify-center bg-background">
+  <div class="flex flex-col items-center gap-4">
+    <div class="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+    <p class="text-xs font-black uppercase tracking-[0.2em] text-primary animate-pulse">Loading Platform...</p>
+  </div>
+</div>
 
-<!-- 2. Why Choose Us -->
-<app-why-study></app-why-study>
+<ng-container *ngIf="!loading">
+  <!-- Empty State for Admin -->
+  <div *ngIf="sections.length === 0" class="min-h-[60vh] flex items-center justify-center bg-surface-container-low/30 px-6">
+    <div class="max-w-md w-full text-center space-y-6 animate-fade-in-up">
+      <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-8 rotate-3 group-hover:rotate-6 transition-transform">
+        <lucide-icon [img]="LayoutIcon" class="w-10 h-10 text-primary"></lucide-icon>
+      </div>
+      <h2 class="text-3xl font-black text-on-surface">No Sections Yet</h2>
+      <p class="text-on-surface-variant font-medium">Your homepage is currently a blank canvas. Let's populate it with professional section templates.</p>
+      
+      <div class="pt-4">
+        <button (click)="seedDefaultSections()" 
+                class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all">
+          ✨ Seed Default Content
+        </button>
+      </div>
+      <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-black">Admin Access Only</p>
+    </div>
+  </div>
 
-<!-- 3. Popular Courses -->
-<app-courses></app-courses>
-
-<!-- 4. Student Success Stories (Stats + Competencies) -->
-<app-competencies></app-competencies>
-
-<!-- 5. Trainer Profiles -->
-<app-trainers></app-trainers>
-
-<!-- 6. Learning Process Timeline -->
-<app-timeline></app-timeline>
-
-<!-- 7. Upcoming Batches -->
-<app-batches></app-batches>
-
-<!-- 8. Testimonials -->
-<app-testimonials></app-testimonials>
-
-<!-- 9. Mission / CTA Banner -->
-<app-mission></app-mission>
-
-<!-- 10. FAQ -->
-<app-faq></app-faq>
-
-<!-- 11. Contact + Map + WhatsApp -->
-<app-contact-form></app-contact-form>
+  <div *ngFor="let section of sections" [id]="section.anchor || section.id">
+    <ng-container [ngSwitch]="section.type">
+      <app-hero *ngSwitchCase="'hero'" [content]="section.content"></app-hero>
+      <app-why-study *ngSwitchCase="'about'" [content]="section.content"></app-why-study>
+      <app-courses *ngSwitchCase="'courses'" [content]="section.content"></app-courses>
+      <app-competencies *ngSwitchCase="'competencies'" [content]="section.content"></app-competencies>
+      <app-trainers *ngSwitchCase="'trainers'" [content]="section.content"></app-trainers>
+      <app-timeline *ngSwitchCase="'process'" [content]="section.content"></app-timeline>
+      <app-batches *ngSwitchCase="'batches'" [content]="section.content"></app-batches>
+      <app-testimonials *ngSwitchCase="'testimonials'" [content]="section.content"></app-testimonials>
+      <app-mission *ngSwitchCase="'mission'" [content]="section.content"></app-mission>
+      <app-faq *ngSwitchCase="'faq'" [content]="section.content"></app-faq>
+      <app-contact-form *ngSwitchCase="'contact'" [content]="section.content"></app-contact-form>
+      
+      <!-- Fallback or custom types -->
+      <div *ngSwitchDefault class="py-20 text-center glass border-y border-outline-variant/10">
+        <h2 class="text-xl font-bold opacity-30 uppercase tracking-widest">Dynamic Section: {{ section.name }}</h2>
+        <p class="text-xs opacity-40">Type: {{ section.type }}</p>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
 
 <!-- Floating WhatsApp Button -->
 <a href="https://wa.me/919876543210?text=Hi%20KSR%20IT%2C%20I%20want%20to%20know%20about%20your%20courses" target="_blank" rel="noopener"

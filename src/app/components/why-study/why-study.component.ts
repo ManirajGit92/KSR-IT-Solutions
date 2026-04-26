@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Brain, Rocket, School, Clock, Award } from 'lucide-angular';
 
@@ -9,6 +9,11 @@ import { LucideAngularModule, Brain, Rocket, School, Clock, Award } from 'lucide
   templateUrl: './why-study.component.html'
 })
 export class WhyStudyComponent {
+  @Input() content: any = {
+    title: 'Why Choose KSR IT Solutions?',
+    subtitle: 'We don\'t just teach code; we build careers with industry-aligned curriculum and hands-on experience.'
+  };
+
   benefits = [
     { icon: Brain, title: "Expert Trainers", desc: "Learn from MNC veterans with 15+ years of real industry experience in Fortune 500 companies.", color: "bg-blue-500/10 text-blue-600 dark:text-blue-400", gradient: "from-blue-500 to-blue-600" },
     { icon: Rocket, title: "Real-Time Projects", desc: "Build production-grade applications with live datasets, APIs, and industry-standard architecture.", color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400", gradient: "from-emerald-500 to-emerald-600" },

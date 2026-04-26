@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { ThemeService } from '../../services/theme.service';
-import { LucideAngularModule, Menu, X, LogOut, Sun, Moon, Shield, LayoutDashboard } from 'lucide-angular';
+import { LucideAngularModule, Menu, X, LogOut, Sun, Moon, Shield, LayoutDashboard, Book, Users, Calendar } from 'lucide-angular';
 
 
 @Component({
@@ -23,6 +23,9 @@ export class NavbarComponent {
   readonly MoonIcon = Moon;
   readonly ShieldIcon = Shield;
   readonly LayoutDashboardIcon = LayoutDashboard;
+  readonly BookIcon = Book;
+  readonly UsersIcon = Users;
+  readonly CalendarIcon = Calendar;
 
   toggleMenu() {
     this.isOpen = !this.isOpen;

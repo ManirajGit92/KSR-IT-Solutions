@@ -11,16 +11,32 @@
       </a>
     </div>
 
-    <div class="hidden md:flex items-center gap-8 bg-surface-container/50 px-6 py-2 rounded-full border border-outline-variant/20 backdrop-blur-md">
-      <a href="#courses" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
+    <div class="hidden md:flex items-center gap-6 bg-surface-container/50 px-6 py-2 rounded-full border border-outline-variant/20 backdrop-blur-md">
+      <a href="#home" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+        Home
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#about" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+        About
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#courses" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Courses
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#about" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
-        About Us
+      <a href="#trainers" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+        Trainers
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#contact" class="text-sm font-semibold text-on-surface hover:text-primary transition-colors relative group">
+      <a href="#batches" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+        Batches
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#faq" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
+        FAQ
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#contact" class="text-[11px] font-bold uppercase tracking-widest text-on-surface hover:text-primary transition-colors relative group">
         Contact
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
@@ -66,20 +82,28 @@
   <!-- Mobile Menu -->
   <div class="md:hidden glass border-b border-outline-variant/10 overflow-hidden transition-all duration-300 absolute w-full left-0 top-[72px]"
        [class.max-h-0]="!isOpen" [class.opacity-0]="!isOpen"
-       [class.max-h-96]="isOpen" [class.opacity-100]="isOpen">
-    <div class="px-6 py-6 flex flex-col gap-6">
-      <a href="#courses" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
-        <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5"></lucide-icon> Courses
+       [class.max-h-[80vh] group-hover:overflow-y-auto]="isOpen" [class.opacity-100]="isOpen">
+    <div class="px-6 py-6 grid grid-cols-2 gap-4">
+      <a href="#home" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+        <lucide-icon [img]="LayoutDashboardIcon" class="w-5 h-5"></lucide-icon> Home
       </a>
-      <a href="#about" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
-        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> About Us
+      <a href="#about" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> About
       </a>
-      <a href="#contact" (click)="isOpen = false" class="text-xl font-bold text-primary flex items-center gap-3">
+      <a href="#courses" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+        <lucide-icon [img]="BookIcon" class="w-5 h-5"></lucide-icon> Courses
+      </a>
+      <a href="#trainers" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+        <lucide-icon [img]="UsersIcon" class="w-5 h-5"></lucide-icon> Trainers
+      </a>
+      <a href="#batches" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
+        <lucide-icon [img]="CalendarIcon" class="w-5 h-5"></lucide-icon> Batches
+      </a>
+      <a href="#contact" (click)="isOpen = false" class="p-4 rounded-2xl bg-surface-container-low text-primary font-bold flex flex-col items-center gap-2 border border-outline-variant/10">
         <lucide-icon [img]="LogOutIcon" class="w-5 h-5"></lucide-icon> Contact
       </a>
-      <hr class="border-outline-variant/20">
-      <a routerLink="/admin" (click)="isOpen = false" class="text-lg font-bold text-on-surface-variant flex items-center gap-3">
-        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> Admin Access
+      <a routerLink="/admin" (click)="isOpen = false" class="col-span-2 p-4 rounded-2xl bg-primary text-white font-bold flex items-center justify-center gap-3">
+        <lucide-icon [img]="ShieldIcon" class="w-5 h-5"></lucide-icon> Admin Portal
       </a>
     </div>
   </div>

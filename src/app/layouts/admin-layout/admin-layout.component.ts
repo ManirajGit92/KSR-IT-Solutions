@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { ThemeService } from '../../services/theme.service';
-import { LucideAngularModule, LayoutDashboard, Book, Users, Layers, LogOut, Sun, Moon, GraduationCap, Star, Calendar, HelpCircle, MessageSquare } from 'lucide-angular';
+import { LucideAngularModule, LayoutDashboard, Book, Users, Layers, LogOut, Sun, Moon, GraduationCap, Star, Calendar, HelpCircle, MessageSquare, TrendingUp } from 'lucide-angular';
 
 @Component({
   selector: 'app-admin-layout',
@@ -27,4 +27,5 @@ export class AdminLayoutComponent {
   readonly CalendarIcon = Calendar;
   readonly HelpCircleIcon = HelpCircle;
   readonly MessageSquareIcon = MessageSquare;
+  readonly TrendingUpIcon = TrendingUp;
 }
