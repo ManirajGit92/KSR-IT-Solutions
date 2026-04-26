@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Course {
   id: string;
+  slug: string;
   title: string;
   description: string;
   duration: string;
@@ -16,6 +17,82 @@ export interface Course {
   price?: string;
   originalPrice?: string;
   rating?: string;
+  longDescription?: string;
+  syllabus?: { title: string; topics: string[] }[];
+  projects?: { title: string; description: string; image?: string }[];
+  trainer?: { name: string; role: string; bio: string; image?: string };
+  certificate?: { title: string; description: string; image?: string };
+  feesPlans?: { name: string; price: string; features: string[]; highlight?: boolean }[];
+  batches?: { timing: string; days: string; startDate: string; status: string }[];
+  reviews?: { studentName: string; rating: number; comment: string; date: string }[];
+  faq?: { q: string; a: string }[];
+}
+
+export interface Trainer {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string;
+  specialization: string[];
+  socials?: { platform: string; url: string }[];
+}
+
+export interface Testimonial {
+  id: string;
+  studentName: string;
+  courseName: string;
+  content: string;
+  rating: number;
+  imageUrl?: string;
+  date: string;
+}
+
+export interface Batch {
+  id: string;
+  courseId: string;
+  courseTitle: string;
+  timing: string;
+  days: string;
+  startDate: string;
+  status: 'Upcoming' | 'Ongoing' | 'Completed';
+}
+
+export interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+export interface Enquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+  message: string;
+  status: 'Pending' | 'Contacted' | 'Closed';
+  date: string;
+}
+
+export interface Student {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  enrolledCourses: string[];
+  joinedDate: string;
+  status: 'Active' | 'Inactive';
+}
+
+export interface HomepageSection {
+  id: string;
+  name: string;
+  type: string;
+  order: number;
+  visible: boolean;
+  content: any;
 }
 
 @Injectable({
@@ -90,5 +167,52 @@ export class FirebaseService {
 
   logout() {
     return signOut(this.auth);
+  }
+
+  // Generic CRUD
+  async getCollection<T>(collectionName: string): Promise<T[]> {
+    const { collection, getDocs, query, orderBy } = await import('firebase/firestore');
+    let q = query(collection(this.db, collectionName));
+    
+    // Sort by order if it's homepage sections
+    if (collectionName === 'homepage_sections') {
+      q = query(collection(this.db, collectionName), orderBy('order', 'asc'));
+    }
+
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as T));
+  }
+
+  async addDocument(collectionName: string, data: any): Promise<string> {
+    const { collection, addDoc } = await import('firebase/firestore');
+    const docRef = await addDoc(collection(this.db, collectionName), data);
+    return docRef.id;
+  }
+
+  async updateDocument(collectionName: string, id: string, data: any): Promise<void> {
+    const { doc, updateDoc } = await import('firebase/firestore');
+    const docRef = doc(this.db, collectionName, id);
+    return updateDoc(docRef, data);
+  }
+
+  async deleteDocument(collectionName: string, id: string): Promise<void> {
+    const { doc, deleteDoc } = await import('firebase/firestore');
+    const docRef = doc(this.db, collectionName, id);
+    return deleteDoc(docRef);
+  }
+
+  // Specialized methods
+  async getCourses(): Promise<Course[]> {
+    return this.getCollection<Course>('courses');
+  }
+
+  async getCourseBySlug(slug: string): Promise<Course | null> {
+    const { collection, query, where, getDocs, limit } = await import('firebase/firestore');
+    const coursesRef = collection(this.db, 'courses');
+    const q = query(coursesRef, where('slug', '==', slug), limit(1));
+    const snapshot = await getDocs(q);
+    if (snapshot.empty) return null;
+    const doc = snapshot.docs[0];
+    return { id: doc.id, ...doc.data() } as Course;
   }
 }

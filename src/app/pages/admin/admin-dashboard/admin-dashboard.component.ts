@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, BookOpen, Users, TrendingUp, Layers2, ArrowUpRight, Clock } from 'lucide-angular';
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -19,7 +20,7 @@ import { LucideAngularModule, BookOpen, Users, TrendingUp, Layers2, ArrowUpRight
         </div>
         <div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant">
           <lucide-icon [img]="ClockIcon" class="w-4 h-4"></lucide-icon>
-          Last updated: Just now
+          Last updated: {{ lastUpdated | date:'shortTime' }}
         </div>
       </div>
 
@@ -60,15 +61,15 @@ import { LucideAngularModule, BookOpen, Users, TrendingUp, Layers2, ArrowUpRight
           </div>
         </section>
 
-        <!-- Admin Checklist -->
+        <!-- Quick Links -->
         <section class="glass rounded-2xl border border-outline-variant/10 p-6">
-          <h2 class="text-lg font-bold text-on-surface mb-6">Admin Checklist</h2>
+          <h2 class="text-lg font-bold text-on-surface mb-6">Quick Actions</h2>
           <div class="space-y-3">
             <div *ngFor="let task of checklist" class="rounded-2xl border border-outline-variant/10 bg-surface-container-lowest p-4 hover:border-primary/20 transition-all hover:-translate-y-0.5">
               <div class="flex items-center justify-between gap-3">
                 <span class="font-bold text-on-surface text-sm">{{ task.title }}</span>
                 <span class="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap"
-                  [ngClass]="task.status === 'Ready' 
+                  [ngClass]="task.status === 'Live' 
                     ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
                     : 'bg-secondary/10 text-secondary'">
                   {{ task.status }}
@@ -82,27 +83,45 @@ import { LucideAngularModule, BookOpen, Users, TrendingUp, Layers2, ArrowUpRight
     </section>
   `
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
+  private firebaseService = inject(FirebaseService);
+  
   readonly ArrowUpRightIcon = ArrowUpRight;
   readonly ClockIcon = Clock;
+  lastUpdated = new Date();
 
-  readonly stats = [
-    { label: 'Active Courses', value: '12', helper: '3 scheduled for next intake', icon: BookOpen, iconBg: 'bg-gradient-to-br from-blue-500 to-blue-600' },
-    { label: 'Learners', value: '248', helper: '19 joined this week', icon: Users, iconBg: 'bg-gradient-to-br from-emerald-500 to-emerald-600' },
-    { label: 'Completion Rate', value: '87%', helper: 'Improved 6% month over month', icon: TrendingUp, iconBg: 'bg-gradient-to-br from-violet-500 to-violet-600' },
-    { label: 'Landing Sections', value: '9', helper: '2 need copy updates', icon: Layers2, iconBg: 'bg-gradient-to-br from-amber-500 to-amber-600' }
+  stats: any[] = [];
+  activity = [
+    { title: 'New enquiries', value: '0', caption: 'Last 7 days' },
+    { title: 'Pending batches', value: '0', caption: 'Starting soon' },
+    { title: 'Live sessions', value: '0', caption: 'Currently active' },
+    { title: 'Student growth', value: '+12%', caption: 'This month' }
   ];
 
-  readonly activity = [
-    { title: 'New enrollments', value: '19', caption: 'Last 7 days' },
-    { title: 'Pending approvals', value: '6', caption: 'Awaiting admin review' },
-    { title: 'Certificates issued', value: '14', caption: 'Generated this month' },
-    { title: 'Content updates', value: '8', caption: 'Published to live site' }
+  checklist = [
+    { title: 'Homepage Hero', status: 'Live', detail: 'Primary banner updated with new intake dates.' },
+    { title: 'Course Syllabus', status: 'Draft', detail: 'Java Full Stack syllabus needs mentor review.' },
+    { title: 'New Testimonials', status: 'Pending', detail: '3 student stories awaiting approval.' }
   ];
 
-  readonly checklist = [
-    { title: 'Dashboard route connected', status: 'Ready', detail: 'The admin home page is now mapped to a real component.' },
-    { title: 'Course management screen', status: 'Ready', detail: 'Sidebar navigation now opens the dedicated courses screen.' },
-    { title: 'User operations', status: 'Ready', detail: 'User list and role summary screen is available from the sidebar.' }
-  ];
+  async ngOnInit() {
+    await this.loadStats();
+  }
+
+  async loadStats() {
+    const courses = await this.firebaseService.getCollection('courses');
+    const students = await this.firebaseService.getCollection('students');
+    const sections = await this.firebaseService.getCollection('homepage_sections');
+    const enquiries = await this.firebaseService.getCollection('enquiries');
+
+    this.stats = [
+      { label: 'Active Courses', value: courses.length.toString(), helper: 'Across all domains', icon: BookOpen, iconBg: 'bg-gradient-to-br from-blue-500 to-blue-600' },
+      { label: 'Total Students', value: students.length.toString(), helper: 'Enrolled learners', icon: Users, iconBg: 'bg-gradient-to-br from-emerald-500 to-emerald-600' },
+      { label: 'Platform Readiness', value: '94%', helper: 'Content health score', icon: TrendingUp, iconBg: 'bg-gradient-to-br from-violet-500 to-violet-600' },
+      { label: 'Homepage Blocks', value: sections.length.toString(), helper: 'Dynamic sections', icon: Layers2, iconBg: 'bg-gradient-to-br from-amber-500 to-amber-600' }
+    ];
+
+    this.activity[0].value = enquiries.length.toString();
+    this.lastUpdated = new Date();
+  }
 }

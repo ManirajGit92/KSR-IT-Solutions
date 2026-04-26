@@ -35,20 +35,5 @@
       </div>
     </div>
 
-    <!-- Empty State -->
-    <div *ngIf="!loading && courses.length === 0" class="text-center py-20 glass rounded-3xl border border-outline-variant/20">
-      <div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-6">
-        <svg class="w-10 h-10 text-on-surface-variant" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-      </div>
-      <p class="text-on-surface-variant text-lg font-medium mb-2">No courses available yet</p>
-      <p class="text-on-surface-variant text-sm mb-8">Check back soon for new programs!</p>
-
-      <ng-container *ngIf="firebaseService.user$ | async as user">
-        <button *ngIf="user.email === 'manirajmca.ac@gmail.com'" (click)="seedData()" 
-                class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 active:translate-y-0">
-          Seed Initial Courses
-        </button>
-      </ng-container>
-    </div>
   </div>
 </section>

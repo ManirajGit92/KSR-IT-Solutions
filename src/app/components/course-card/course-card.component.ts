@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Course } from '../../services/firebase.service';
 import { LucideAngularModule, Calendar, BarChart, Star, IndianRupee } from 'lucide-angular';
 
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-course-card',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, RouterLink],
   templateUrl: './course-card.component.html'
 })
 export class CourseCardComponent {

@@ -6,20 +6,47 @@ import { collection, onSnapshot, query, orderBy, addDoc, serverTimestamp } from 
 
 const COURSES_SEED: Omit<Course, 'id'>[] = [
   {
-    title: "Mastering Snowflake",
-    description: "Cloud Data Platform architecture and performance optimization.",
+    slug: "angular",
+    title: "Modern Angular Pro",
+    description: "Master Angular 17+ with standalone components, signals, and advanced SSR techniques.",
     duration: "6 Months",
     level: "Intermediate",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnldijmdWSGtk6QwP7zskfVPsgRZzRomoe6bdxrz-aMWBtJ7hMW6v6c3uD3Zu-uOhF0mBz0NB26HXFWWaBfMCZiOibBCJ4KUCW6wL4qmb3rndThgF0vzJbJZHSXPSx5mT38LxfLku6awBKNI9GfXs_A1BsvhBROw9imymdZwFhT7RhYLvDH1ReVnW7m5CaNJR2SA5aP9tKN0ZwdGY4tZvrRbaCdLJfy95BxCwo7kgdRSQu2R0X0WNw8GzJ3QUXicPmTDBMmZYB-mE",
-    badge: "Bestseller"
+    imageUrl: "https://images.unsplash.com/photo-1593720213428-28a5b9ed9461?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    badge: "Most Popular",
+    price: "₹14,999",
+    originalPrice: "₹24,999",
+    rating: "4.9",
+    longDescription: "This course covers everything from basic component architecture to advanced state management with Signals and RxJS. You will build a production-ready enterprise application.",
+    syllabus: [
+      { title: 'Angular Core', topics: ['Standalone Components', 'Signals API', 'Control Flow Syntax'] },
+      { title: 'Routing & State', topics: ['Advanced Router Guards', 'RxJS Patterns', 'NGXS/NgRx Store'] }
+    ]
   },
   {
-    title: "Advanced SQL Mastery",
-    description: "Master complex queries, window functions, and performance tuning.",
+    slug: "python",
+    title: "Python for Data Science",
+    description: "Learn Python from scratch and dive into Pandas, NumPy, and Machine Learning basics.",
     duration: "4 Months",
+    level: "Beginner",
+    imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    badge: "Bestseller",
+    price: "₹12,999",
+    originalPrice: "₹19,999",
+    rating: "4.8",
+    longDescription: "Master the most versatile programming language. From automation scripts to complex data analysis, this course prepares you for the high-demand data science roles."
+  },
+  {
+    slug: "java",
+    title: "Java Full Stack Masterclass",
+    description: "End-to-end Java development with Spring Boot, Microservices, and Cloud Deployment.",
+    duration: "8 Months",
     level: "Advanced",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuA8KoHwxKEgU6y3bqFcjFB4wP3bS1bAXzEavKOZQxO0VjqNFJfnIkrcI1WBmWO1UlUXTrMvFUQBr5gYfOfQnkPmW6Jf_VLvf8eTEimSwz8JfFFZAxHVgPISuyGKl3UTm8heDhxP3_L-5xbt3gkYsHl_op6p32t6T-7O0eYYCtHjBnsn0J1EBZw40tPgOy3lXZIJZ2g076hKCMLupDSqnaejHfQBqci_IfVeN2n0I167bnhisA8KJb86onuGpNHiOT2uWPotwsl7FWI",
-    badge: "Hot Topic"
+    imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    badge: "Hot Topic",
+    price: "₹19,999",
+    originalPrice: "₹29,999",
+    rating: "4.9",
+    longDescription: "The ultimate guide to building enterprise-grade Java applications. Covers Spring Security, Docker, Kubernetes, and Cloud-native development."
   }
 ];
 
@@ -67,14 +94,16 @@ export class CoursesComponent implements OnInit {
   }
 
   async seedData() {
+    const { doc, setDoc } = await import('firebase/firestore');
     try {
       for (const c of COURSES_SEED) {
-        await addDoc(collection(this.firebaseService.db, 'courses'), c);
+        const courseRef = doc(this.firebaseService.db, 'courses', c.slug);
+        await setDoc(courseRef, c, { merge: true });
       }
-      alert("Database seeded successfully!");
+      alert("Database synced successfully with slugs!");
     } catch (err) {
       console.error(err);
-      alert("Seeding failed. Check console.");
+      alert("Sync failed. Check console.");
     }
   }
 }

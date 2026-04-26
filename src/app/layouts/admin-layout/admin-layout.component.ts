@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { ThemeService } from '../../services/theme.service';
-import { LucideAngularModule, LayoutDashboard, Book, Users, Layers, LogOut, Sun, Moon } from 'lucide-angular';
+import { LucideAngularModule, LayoutDashboard, Book, Users, Layers, LogOut, Sun, Moon, GraduationCap, Star, Calendar, HelpCircle, MessageSquare } from 'lucide-angular';
 
 @Component({
   selector: 'app-admin-layout',
@@ -22,4 +22,9 @@ export class AdminLayoutComponent {
   readonly LogOutIcon = LogOut;
   readonly SunIcon = Sun;
   readonly MoonIcon = Moon;
+  readonly GraduationCapIcon = GraduationCap;
+  readonly StarIcon = Star;
+  readonly CalendarIcon = Calendar;
+  readonly HelpCircleIcon = HelpCircle;
+  readonly MessageSquareIcon = MessageSquare;
 }
