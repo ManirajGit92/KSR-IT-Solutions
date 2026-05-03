@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  User,
+} from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import firebaseConfig from '../../../firebase-applet-config.json';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -22,10 +29,31 @@ export interface Course {
   projects?: { title: string; description: string; image?: string }[];
   trainer?: { name: string; role: string; bio: string; image?: string };
   certificate?: { title: string; description: string; image?: string };
-  feesPlans?: { name: string; price: string; features: string[]; highlight?: boolean }[];
-  batches?: { timing: string; days: string; startDate: string; status: string }[];
-  reviews?: { studentName: string; rating: number; comment: string; date: string }[];
-  faq?: { q: string; a: string }[];
+  feesPlans?: {
+    name: string;
+    price: string;
+    features: string[];
+    highlight?: boolean;
+  }[];
+  batches?: {
+    timing: string;
+    days: string;
+    startDate: string;
+    status: string;
+  }[];
+  reviews?: {
+    studentName: string;
+    rating: number;
+    comment: string;
+    date: string;
+  }[];
+  faq?: { question: string; answer: string }[];
+  detailDesc?: string;
+  reviewCount?: number;
+  enrolledCount?: number;
+  hours?: number;
+  keyPoints?: string[];
+  downloadUrl?: string;
 }
 
 export interface Trainer {
@@ -106,7 +134,7 @@ export interface ContentVersion {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
   public app = initializeApp(firebaseConfig);
@@ -123,7 +151,9 @@ export class FirebaseService {
   private authInitResolve!: () => void;
 
   constructor() {
-    this.authInitPromise = new Promise(resolve => this.authInitResolve = resolve);
+    this.authInitPromise = new Promise(
+      (resolve) => (this.authInitResolve = resolve),
+    );
 
     onAuthStateChanged(this.auth, async (u) => {
       this.userSubject.next(u);
@@ -137,12 +167,15 @@ export class FirebaseService {
             displayName: u.displayName,
             email: u.email,
             photoURL: u.photoURL,
-            role: u.email === 'manirajmca.ac@gmail.com' ? 'admin' : 'student'
+            role: u.email === 'manirajmca.ac@gmail.com' ? 'admin' : 'student',
           };
           await setDoc(userRef, profileData);
         } else {
           profileData = userSnap.data();
-          if (u.email === 'manirajmca.ac@gmail.com' && profileData.role !== 'admin') {
+          if (
+            u.email === 'manirajmca.ac@gmail.com' &&
+            profileData.role !== 'admin'
+          ) {
             profileData.role = 'admin';
             await setDoc(userRef, profileData, { merge: true });
           }
@@ -181,16 +214,19 @@ export class FirebaseService {
 
   // Generic CRUD
   async getCollection<T>(collectionName: string): Promise<T[]> {
-    const { collection, getDocs, query, orderBy } = await import('firebase/firestore');
+    const { collection, getDocs, query, orderBy } =
+      await import('firebase/firestore');
     let q = query(collection(this.db, collectionName));
-    
+
     // Sort by order if it's homepage sections
     if (collectionName === 'homepage_sections') {
       q = query(collection(this.db, collectionName), orderBy('order', 'asc'));
     }
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as T));
+    return snapshot.docs.map(
+      (doc) => ({ id: doc.id, ...doc.data() }) as unknown as T,
+    );
   }
 
   async addDocument(collectionName: string, data: any): Promise<string> {
@@ -199,16 +235,22 @@ export class FirebaseService {
     return docRef.id;
   }
 
-  async updateDocument(collectionName: string, id: string, data: any, saveHistory = false): Promise<void> {
-    const { doc, updateDoc, collection, addDoc, serverTimestamp } = await import('firebase/firestore');
+  async updateDocument(
+    collectionName: string,
+    id: string,
+    data: any,
+    saveHistory = false,
+  ): Promise<void> {
+    const { doc, updateDoc, collection, addDoc, serverTimestamp } =
+      await import('firebase/firestore');
     const docRef = doc(this.db, collectionName, id);
-    
+
     if (saveHistory && collectionName === 'homepage_sections' && data.content) {
       await addDoc(collection(this.db, 'section_history'), {
         sectionId: id,
         content: data.content,
         timestamp: serverTimestamp(),
-        author: this.userProfile?.displayName || 'Admin'
+        author: this.userProfile?.displayName || 'Admin',
       });
     }
 
@@ -216,11 +258,18 @@ export class FirebaseService {
   }
 
   async getHistory(sectionId: string): Promise<ContentVersion[]> {
-    const { collection, query, where, getDocs, orderBy } = await import('firebase/firestore');
+    const { collection, query, where, getDocs, orderBy } =
+      await import('firebase/firestore');
     const historyRef = collection(this.db, 'section_history');
-    const q = query(historyRef, where('sectionId', '==', sectionId), orderBy('timestamp', 'desc'));
+    const q = query(
+      historyRef,
+      where('sectionId', '==', sectionId),
+      orderBy('timestamp', 'desc'),
+    );
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as ContentVersion));
+    return snapshot.docs.map(
+      (doc) => ({ id: doc.id, ...doc.data() }) as unknown as ContentVersion,
+    );
   }
 
   async deleteDocument(collectionName: string, id: string): Promise<void> {
@@ -235,7 +284,8 @@ export class FirebaseService {
   }
 
   async getCourseBySlug(slug: string): Promise<Course | null> {
-    const { collection, query, where, getDocs, limit } = await import('firebase/firestore');
+    const { collection, query, where, getDocs, limit } =
+      await import('firebase/firestore');
     const coursesRef = collection(this.db, 'courses');
     const q = query(coursesRef, where('slug', '==', slug), limit(1));
     const snapshot = await getDocs(q);

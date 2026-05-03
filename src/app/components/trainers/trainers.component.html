@@ -6,33 +6,39 @@
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="text-center mb-14 md:mb-20 animate-fade-in-up">
       <span class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4 block">Our Mentors</span>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight mb-4">Learn from <span class="text-gradient">Industry Experts</span></h2>
-      <p class="text-on-surface-variant text-base sm:text-lg max-w-2xl mx-auto font-medium">Our trainers are working professionals with deep hands-on experience in leading tech companies.</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight mb-4">Learn from <span
+          class="text-gradient">Industry Experts</span></h2>
+      <p class="text-on-surface-variant text-base sm:text-lg max-w-2xl mx-auto font-medium">Our trainers are working
+        professionals with deep hands-on experience in leading tech companies.</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
       <div *ngFor="let trainer of trainers; let i = index"
-           class="group glass rounded-3xl border border-outline-variant/15 p-6 sm:p-7 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-primary/20 overflow-hidden relative animate-fade-in-up"
-           [style.animation-delay]="i * 120 + 'ms'">
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        
+        class="group glass rounded-3xl border border-outline-variant/15 p-6 sm:p-7 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-primary/20 overflow-hidden relative animate-fade-in-up"
+        [style.animation-delay]="i * 120 + 'ms'">
+
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity">
+        </div>
+
         <div class="relative z-10">
           <!-- Avatar -->
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
-               [ngClass]="trainer.color">
+          <div
+            class="w-20 h-20 rounded-2xl bg-gradient-to-br mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+            [ngClass]="trainer.color">
             {{ trainer.avatar }}
           </div>
-          
-          <h4 class="text-lg font-bold text-on-surface mb-1 group-hover:text-primary transition-colors">{{ trainer.name }}</h4>
+
+          <h4 class="text-lg font-bold text-on-surface mb-1 group-hover:text-primary transition-colors">{{ trainer.name
+            }}</h4>
           <p class="text-xs font-bold text-secondary mb-3">{{ trainer.role }}</p>
-          
+
           <!-- Rating -->
           <div class="flex items-center justify-center gap-1 mb-4">
             <lucide-icon [img]="StarIcon" class="w-3.5 h-3.5 fill-current text-yellow-400"></lucide-icon>
             <span class="text-xs font-bold text-on-surface-variant">{{ trainer.rating }} rating</span>
           </div>
-          
+
           <p class="text-sm text-on-surface-variant font-medium mb-1">{{ trainer.experience }} experience</p>
           <p class="text-[11px] text-on-surface-variant/70 font-medium">{{ trainer.companies }}</p>
         </div>

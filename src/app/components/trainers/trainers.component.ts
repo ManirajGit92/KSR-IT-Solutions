@@ -6,12 +6,13 @@ import { LucideAngularModule, Linkedin, Star } from 'lucide-angular';
   selector: 'app-trainers',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
-  templateUrl: './trainers.component.html'
+  templateUrl: './trainers.component.html',
 })
 export class TrainersComponent {
   @Input() content: any = {
     title: 'Learn From the <span class="text-gradient">Best</span>',
-    subtitle: 'Our instructors are veteran MNC professionals with decades of combined experience in top-tier technology companies.'
+    subtitle:
+      'Our instructors are veteran MNC professionals with decades of combined experience in top-tier technology companies.',
   };
   readonly LinkedinIcon = Linkedin;
   readonly StarIcon = Star;
@@ -24,7 +25,7 @@ export class TrainersComponent {
       companies: 'TCS, Cognizant, Infosys',
       avatar: 'K',
       color: 'from-blue-500 to-indigo-600',
-      rating: '4.9'
+      rating: '4.9',
     },
     {
       name: 'Priya Lakshmi',
@@ -33,25 +34,7 @@ export class TrainersComponent {
       companies: 'Wipro, HCL, Accenture',
       avatar: 'P',
       color: 'from-violet-500 to-purple-600',
-      rating: '4.8'
+      rating: '4.8',
     },
-    {
-      name: 'Suresh Kumar',
-      role: 'Azure & DevOps Specialist',
-      experience: '14+ years',
-      companies: 'Microsoft, Amazon, Zoho',
-      avatar: 'S',
-      color: 'from-emerald-500 to-teal-600',
-      rating: '4.9'
-    },
-    {
-      name: 'Deepa Venkat',
-      role: 'SQL & Database Expert',
-      experience: '10+ years',
-      companies: 'Oracle, IBM, CTS',
-      avatar: 'D',
-      color: 'from-amber-500 to-orange-600',
-      rating: '4.7'
-    }
   ];
 }
