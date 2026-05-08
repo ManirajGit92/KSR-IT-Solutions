@@ -9,7 +9,10 @@
         "title": { "type": "string" },
         "description": { "type": "string" },
         "duration": { "type": "string" },
-        "level": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced"] },
+        "level": {
+          "type": "string",
+          "enum": ["Beginner", "Intermediate", "Advanced"]
+        },
         "imageUrl": { "type": "string", "format": "uri" },
         "badge": { "type": "string" }
       },
@@ -24,7 +27,10 @@
         "courseId": { "type": "string" },
         "courseTitle": { "type": "string" },
         "enrolledAt": { "type": "string", "format": "date-time" },
-        "status": { "type": "string", "enum": ["pending", "active", "completed"] }
+        "status": {
+          "type": "string",
+          "enum": ["pending", "active", "completed"]
+        }
       },
       "required": ["userId", "courseId", "enrolledAt"]
     },
@@ -63,7 +69,7 @@
       "schema": "Enrollment",
       "description": "User course enrollments."
     },
-    "/inquiries/{inquiryId}": {
+    "/enquiries/{inquiryId}": {
       "schema": "Inquiry",
       "description": "Contact form submissions."
     },
